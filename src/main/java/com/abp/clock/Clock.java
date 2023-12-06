@@ -31,17 +31,10 @@ public class Clock extends Application {
 
         ClockPane clock = new ClockPane();
 
-        String timeString = clock.getHour() + ":" + clock.getMinute()
-                + ":" + clock.getSecond();
-
-        Label lblCurrentTime = new Label(timeString);
-
         // Place clock and label in border pane
         BorderPane pane = new BorderPane();
         pane.setCenter(clock);
         pane.setStyle("-fx-background-color: black; -fx-border-color : black; -fx-border-width : 0 5 ");
-
-        BorderPane.setAlignment(lblCurrentTime, Pos.TOP_CENTER);
 
         // Create a scene and place the pane in the stage
         Scene scene = new Scene(pane, 640, 480);
