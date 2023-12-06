@@ -148,10 +148,10 @@ public class Clock extends Application {
 
             // Draw second hand
             // magic number for calculating 1 radian
-            double RPM = 2 * (Math.PI / 60); // 1 radian
+            double RAD = 2 * (Math.PI / 60); // 1 radian
             double sLength = clockRadius * 0.8;
-            double secondX = centerX + (sLength * Math.sin(second * RPM));
-            double secondY = centerY - (sLength * Math.cos(second * RPM));
+            double secondX = centerX + (sLength * Math.sin(second * RAD));
+            double secondY = centerY - (sLength * Math.cos(second * RAD));
 
             Line sLine = new Line(centerX, centerY, secondX, secondY);
             sLine.setStroke(Color.WHITE);
@@ -161,18 +161,16 @@ public class Clock extends Application {
             // not all the way to the actual circle
             double mLength = clockRadius * 0.65;
             // sin of minute * radian
-            double xMinute = centerX + (mLength * Math.sin(minute * RPM));
+            double xMinute = centerX + (mLength * Math.sin(minute * RAD));
             // cosine of minute * radian
-            double minuteY = centerY - (mLength * Math.cos(minute * RPM));
+            double minuteY = centerY - (mLength * Math.cos(minute * RAD));
             Line mLine = new Line(centerX, centerY, xMinute, minuteY);
             mLine.setStroke(Color.BLACK); // changed color to brown======================
             mLine.setStrokeWidth(3.0);
             // Draw hour hand
             double hLength = clockRadius * 0.5;
-            double hourX = centerX + hLength *
-                    Math.sin((hour % 12 + minute / 60.0) * (2 * Math.PI / 12));
-            double hourY = centerY - hLength *
-                    Math.cos((hour % 12 + minute / 60.0) * (2 * Math.PI / 12));
+            double hourX = centerX + hLength * Math.sin((hour % 12 + minute / 60.0) * (2 * Math.PI / 12));
+            double hourY = centerY - hLength * Math.cos((hour % 12 + minute / 60.0) * (2 * Math.PI / 12));
             Line hLine = new Line(centerX, centerY, hourX, hourY);
             hLine.setStroke(Color.BLACK);
             hLine.setStrokeWidth(3.0);
