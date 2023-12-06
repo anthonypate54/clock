@@ -124,6 +124,7 @@ public class Clock extends Application {
         /** Paint the clock */
         private void drawClock() {
             // Initialize clock parameters
+            // radius of circle to fit in pane
             double clockRadius = Math.min(getWidth(), getHeight()) * 0.8 * 0.5;
             double centerX = getWidth() / 2;
             double centerY = getHeight() / 2;
@@ -148,10 +149,12 @@ public class Clock extends Application {
             dayText.setY(centerY+5);
             dayText.setFill(Color.WHITE);
 
+            // rectangle fpr the day of month
             Rectangle dayRect = new Rectangle(centerX+clockRadius-60, centerY-7, 23,15);
             dayRect.setFill(Color.BLACK);
 
             // Draw second hand
+            // magic number for calculating 1 radian
             double RPM = 2 * (Math.PI / 60); // 1 radian
             double sLength = clockRadius * 0.8;
             double secondX = centerX + (sLength * Math.sin(second * RPM));
@@ -162,8 +165,11 @@ public class Clock extends Application {
             sLine.setStrokeWidth(2.0);
 
             // Draw minute hand
+            // not all the way to the actual circle
             double mLength = clockRadius * 0.65;
+            // sin of minute * radian
             double xMinute = centerX + (mLength * Math.sin(minute * RPM));
+            // cosine of minute * radian
             double minuteY = centerY - (mLength * Math.cos(minute * RPM));
             Line mLine = new Line(centerX, centerY, xMinute, minuteY);
             mLine.setStroke(Color.BLACK); // changed color to brown======================
@@ -177,10 +183,12 @@ public class Clock extends Application {
             Line hLine = new Line(centerX, centerY, hourX, hourY);
             hLine.setStroke(Color.BLACK);
             hLine.setStrokeWidth(3.0);
+
             getChildren().clear(); // Clear the pane
+            // add all circle, minute, second and hour hands
+            // also add the day of month stuff
             getChildren().addAll(circle, sLine, mLine, hLine, dayRect, dayText);
             getChildren().add(innerCircle);
-            // this.getChildren().addAll(dayRect, dayText);
 
             Group ticks = new Group();// create tick hands============================
             Group numbers = new Group(); // create numbers==========================
@@ -197,6 +205,7 @@ public class Clock extends Application {
                 tick.setTranslateX(centerX);
                 tick.setTranslateY(centerY);
                 // applying proper rotation to rotate the tick
+                // this was interesting to get the tick correct
                 tick.getTransforms().add(new Rotate(i * (360 / 12)));
                 // adding to ticks group
                 ticks.getChildren().add(tick);
@@ -220,6 +229,7 @@ public class Clock extends Application {
             int num = 12; // starting with 12
             for (int i = 0; i < 12; i++) {
                 // finding proper position x and y by applying the equation
+                // found this formula online
                 double x = centerX + (clockRadius - 20) * Math.sin((i % 12) * (2 * Math.PI / 12));
                 double y = centerY - (clockRadius - 20) * Math.cos((i % 12) * (2 * Math.PI / 12));
                 // defining a text with hour label, (x-5 and y+5 are used to align text
