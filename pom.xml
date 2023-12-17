@@ -6,7 +6,7 @@
 
     <groupId>com.abp</groupId>
     <artifactId>clock</artifactId>
-    <version>clock</version>
+    <version>1.0</version>
     <name>clock</name>
     <packaging>jar</packaging>
 
@@ -48,6 +48,11 @@
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.11.0</version>
                 <configuration>
+                    <archive>
+                        <manifest>
+                            <mainClass>com.abp.clock.Launcher</mainClass>
+                        </manifest>
+                    </archive>
                     <source>20</source>
                     <target>20</target>
                 </configuration>
