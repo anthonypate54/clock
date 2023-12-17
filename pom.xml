@@ -48,11 +48,6 @@
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.11.0</version>
                 <configuration>
-                    <archive>
-                        <manifest>
-                            <mainClass>com.abp.clock.Launcher</mainClass>
-                        </manifest>
-                    </archive>
                     <source>20</source>
                     <target>20</target>
                 </configuration>
